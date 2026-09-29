@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Calculadora DAC7: ¿cuántas ventas te quedan en Wallapop o Vinted antes de que informen a Hacienda?</title>
+<meta name="description" content="Calculadora gratuita: mira por plataforma cuántas ventas y cuántos euros te quedan antes del límite de 30 ventas o 2.000 € al año (DAC7) en Wallapop, Vinted, eBay o Milanuncios. Sin registro, sin cookies.">
+<link rel="canonical" href="https://daviddm-dvd.github.io/calculadora-dac7/">
+<style>
+  :root { --ink:#1f2937; --muted:#6b7280; --head:#1f3a5f; --bg:#f7f5f0; --card:#fff; --line:#e5e7eb;
+          --ok:#065f46; --okbg:#d1fae5; --warn:#92400e; --warnbg:#fef3c7; --bad:#991b1b; --badbg:#fee2e2; --accent:#2563eb; }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; color:var(--ink); background:var(--bg); line-height:1.5; }
+  header { background:var(--head); color:#fff; padding:28px 16px 24px; }
+  .wrap { max-width:860px; margin:0 auto; padding:0 16px; }
+  header .wrap { padding:0; }
+  h1 { font-size:1.6rem; line-height:1.25; margin:0 0 8px; }
+  header p { margin:0; color:#d6e4f5; }
+  h2 { color:var(--head); font-size:1.25rem; margin:32px 0 10px; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:16px; margin:16px 0; }
+  table { width:100%; border-collapse:collapse; }
+  th, td { text-align:left; padding:8px 6px; border-bottom:1px solid var(--line); vertical-align:middle; }
+  th { font-size:.85rem; color:var(--muted); font-weight:600; }
+  input[type=number] { width:100%; max-width:120px; padding:8px; font-size:1rem; border:1px solid #cbd5e1; border-radius:6px; }
+  .status { font-weight:600; border-radius:6px; padding:4px 8px; display:inline-block; font-size:.9rem; }
+  .ok { color:var(--ok); background:var(--okbg); } .warn { color:var(--warn); background:var(--warnbg); } .bad { color:var(--bad); background:var(--badbg); }
+  .muted { color:var(--muted); font-size:.9rem; }
+  .btn { display:inline-block; background:var(--accent); color:#fff; text-decoration:none; font-weight:600; padding:12px 18px; border-radius:8px; border:0; font-size:1rem; cursor:pointer; }
+  .btn:hover { filter:brightness(1.08); }
+  .note { background:var(--warnbg); border-left:4px solid #d97706; padding:12px 14px; border-radius:6px; }
+  .price { font-size:1.6rem; font-weight:700; color:var(--head); }
+  .shot { width:100%; height:auto; border:1px solid var(--line); border-radius:8px; margin:8px 0; }
+  ul.feat { padding-left:20px; } ul.feat li { margin:4px 0; }
+  footer { margin:40px 0 24px; font-size:.85rem; color:var(--muted); }
+  .res td:nth-child(n+2) { white-space:nowrap; }
+  @media (max-width:640px) { h1 { font-size:1.3rem; } th:nth-child(4), td:nth-child(4) { display:none; } }
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <h1>¿Cuántas ventas te quedan en Wallapop o Vinted antes de que informen a Hacienda?</h1>
+  <p>Calculadora gratuita del límite DAC7 (30 ventas o más de 2.000 € al año, <b>por plataforma</b>). Sin registro y sin cookies; tus datos no salen de tu navegador.</p>
+</div></header>
+
+<main class="wrap">
+  <div class="card">
+    <p style="margin-top:0">Escribe lo que llevas vendido <b>este año</b> en cada plataforma (mira el historial de ventas de la app):</p>
+    <table class="res" id="calc">
+      <thead><tr><th>Plataforma</th><th>Nº de ventas</th><th>Importe total (€)</th><th>Te quedan</th><th>Estado</th></tr></thead>
+      <tbody></tbody>
+    </table>
+    <p id="pace" class="muted"></p>
+    <p class="muted" style="margin-bottom:0">Criterio: la plataforma comunica tus datos si llegas a <b>30 ventas</b> o superas los <b>2.000 €</b> en un año natural. Cada plataforma cuenta por separado. «Cerca» = 80 % de un límite.</p>
+  </div>
+
+  <div class="note"><b>Informar ≠ pagar.</b> Que la plataforma envíe tus datos a Hacienda (modelo 238) no significa que debas pagar impuestos: depende de si hay ganancia o actividad económica (no es lo mismo vender tus cosas usadas que comprar para revender). Esto es información general, no asesoramiento fiscal; ante la duda, consulta a un asesor.</div>
+
+  <h2>¿Quieres llevar la cuenta durante todo el año sin hacerlo a mano?</h2>
+  <div class="card">
+    <p style="margin-top:0">Estoy terminando una <b>plantilla de Excel / Google Sheets</b> que lleva este control por ti: apuntas cada venta en unos 20 segundos y ves en todo momento cuánto te queda en cada plataforma.</p>
+    <img class="shot" src="img/es-panel-plataformas.png" alt="Panel de la plantilla: ventas, importe, lo que falta y estado por plataforma" loading="lazy">
+    <ul class="feat">
+      <li>Contador por plataforma (Wallapop, Vinted, eBay, Milanuncios…) con avisos de «Cerca del umbral» y «Umbral alcanzado».</li>
+      <li>Estimación de la fecha en la que llegarías al límite a tu ritmo actual.</li>
+      <li>Beneficio real por artículo: comisiones, envíos y lo que te costó; marca lo vendido por menos de lo que pagaste.</li>
+      <li>Avisa si una venta no se está contando (sin fecha o con un número mal escrito).</li>
+      <li>Resumen por meses, anuncios estancados y valor del stock. Cualquier año.</li>
+      <li>Excel (probada) y Google Sheets (se importa; instrucciones incluidas). Sin macros, sin suscripción, tus datos en tu archivo.</li>
+    </ul>
+    <img class="shot" src="img/es-registro.png" alt="Registro de ventas de la plantilla, una fila por artículo" loading="lazy">
+    <p><span class="price">14,90 €</span> <span class="muted">pago único · precio previsto</span></p>
+    <p><b>Todavía no está a la venta.</b> Si te interesa, apúntate al aviso (sin compromiso, no pagas nada) y te escribo una sola vez cuando salga. También me ayuda saber qué le falta.</p>
+    <p><a class="btn" id="waitlist" href="https://docs.google.com/forms/d/e/1FAIpQLSd9yUC7UdNnJvtsihvV20au4b80OZF6qyoddOuOXZ7OL-zRlg/viewform" target="_blank" rel="noopener">Avísame cuando salga (1 minuto)</a></p>
+  </div>
+
+  <h2>Preguntas frecuentes</h2>
+  <div class="card">
+    <p><b>¿El límite es por plataforma o en total?</b><br>Por plataforma: cada una informa de lo que vendes en ella. 25 ventas en Wallapop y 25 en Vinted no suman 50 para ninguna de las dos.</p>
+    <p><b>¿Qué cuenta como importe?</b><br>La norma habla del importe pagado o abonado por las ventas; la plataforma también comunica las comisiones que te retiene. La calculadora usa lo que tú escribas: si pones el importe antes de comisiones, el cálculo es más prudente.</p>
+    <p><b>¿Cuándo me entero?</b><br>Las plataformas comunican los datos del año anterior a principios del año siguiente y te envían una copia de lo que han comunicado.</p>
+    <p><b>¿Va a cambiar el límite?</b><br>En junio de 2026 la Comisión Europea propuso subir el importe a 3.000 € y eliminar el criterio de las 30 ventas, pero <b>no está en vigor</b> y necesita la aprobación de todos los países de la UE.</p>
+    <p class="muted" style="margin-bottom:0">Fuentes oficiales: <a href="https://sede.agenciatributaria.gob.es/Sede/procedimientoini/GI52.shtml" rel="noopener">Agencia Tributaria – Modelo 238</a> · <a href="https://www.vinted.es/dac7" rel="noopener">Vinted – DAC7</a> · <a href="https://taxation-customs.ec.europa.eu/taxation/tax-transparency-cooperation/administrative-co-operation-and-mutual-assistance/dac7_en" rel="noopener">Comisión Europea – DAC7</a></p>
+  </div>
+
+  <footer>
+    Herramienta independiente, sin relación con Wallapop, Vinted, eBay ni Milanuncios (sus nombres son marcas de sus titulares). No es asesoramiento fiscal.
+    Esta página no usa cookies; un contador externo (hits.sh) registra visitas de forma anónima. El formulario de aviso es de Google Forms.
+    Plantilla y página creadas con ayuda de herramientas de IA; las fórmulas se han probado en Microsoft Excel.
+    <img src="https://hits.sh/daviddm-dvd.github.io/calculadora-dac7/es.svg" alt="" width="1" height="1" style="opacity:0">
+  </footer>
+</main>
+
+<script>
+(function () {
+  var PLATFORMS = ['Wallapop', 'Vinted', 'eBay', 'Milanuncios', 'Otra'];
+  var COUNT = 30, AMOUNT = 2000, WARN = 0.8;
+  var tbody = document.querySelector('#calc tbody');
+  var fmt = function (n) { return n.toLocaleString('es-ES', { minimumFractionDigits: 0, maximumFractionDigits: 2 }); };
+  PLATFORMS.forEach(function (p, i) {
+    var tr = document.createElement('tr');
+    tr.innerHTML = '<td>' + p + '</td>' +
+      '<td><input type="number" min="0" step="1" inputmode="numeric" aria-label="Ventas en ' + p + '" data-k="n' + i + '"></td>' +
+      '<td><input type="number" min="0" step="0.01" inputmode="decimal" aria-label="Importe en ' + p + '" data-k="a' + i + '"></td>' +
+      '<td class="left" id="left' + i + '"></td><td id="st' + i + '"></td>';
+    tbody.appendChild(tr);
+  });
+  var used = false;
+  function ping(name) { var img = new Image(); img.src = 'https://hits.sh/daviddm-dvd.github.io/calculadora-dac7/' + name + '.svg?t=' + Date.now(); }
+  function calc() {
+    var now = new Date(), jan1 = new Date(now.getFullYear(), 0, 1), dec31 = new Date(now.getFullYear(), 11, 31);
+    var elapsed = Math.floor((now - jan1) / 86400000) + 1;
+    var paceMsgs = [];
+    PLATFORMS.forEach(function (p, i) {
+      var n = parseFloat(document.querySelector('[data-k=n' + i + ']').value);
+      var a = parseFloat(document.querySelector('[data-k=a' + i + ']').value);
+      var left = document.getElementById('left' + i), st = document.getElementById('st' + i);
+      if (isNaN(n) && isNaN(a)) { left.textContent = ''; st.innerHTML = ''; return; }
+      n = isNaN(n) ? 0 : n; a = isNaN(a) ? 0 : a;
+      var reached = n >= COUNT || a > AMOUNT;
+      var near = n >= COUNT * WARN || a >= AMOUNT * WARN;
+      left.textContent = reached ? '—' : (Math.max(0, COUNT - n) + ' ventas o ' + fmt(Math.max(0, AMOUNT - a)) + ' €');
+      st.innerHTML = reached ? '<span class="status bad">Umbral alcanzado</span>' : near ? '<span class="status warn">Cerca</span>' : '<span class="status ok">Por debajo</span>';
+      if (!reached && (n > 0 || a > 0)) {
+        var dN = n > 0 ? COUNT * elapsed / n : Infinity, dA = a > 0 ? AMOUNT * elapsed / a : Infinity;
+        var d = new Date(jan1.getTime() + (Math.min(dN, dA) - 1) * 86400000);
+        paceMsgs.push(p + ': ' + (d > dec31 ? 'a tu ritmo, este año no llegarías' : 'a tu ritmo llegarías hacia el ' + d.toLocaleDateString('es-ES')));
+      }
+    });
+    document.getElementById('pace').textContent = paceMsgs.length ? 'Estimación a tu ritmo actual — ' + paceMsgs.join(' · ') + '.' : '';
+    if (!used) { used = true; ping('es-calc'); }
+  }
+  tbody.addEventListener('input', calc);
+  document.getElementById('waitlist').addEventListener('click', function () { ping('es-waitlist-click'); });
+})();
+</script>
+</body>
+</html>
